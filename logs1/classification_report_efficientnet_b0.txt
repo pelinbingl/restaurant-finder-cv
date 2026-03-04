@@ -1,0 +1,36 @@
+                         precision    recall  f1-score   support
+
+                baklava     0.9130    0.8400    0.8750        50
+         chocolate_cake     0.7759    0.9000    0.8333        50
+          club_sandwich     0.9574    0.9000    0.9278        50
+                 donuts     0.8364    0.9200    0.8762        50
+              dumplings     0.8868    0.9400    0.9126        50
+          eggs_benedict     0.9167    0.8800    0.8980        50
+           french_fries     0.9388    0.9200    0.9293        50
+           french_toast     0.6308    0.8200    0.7130        50
+           garlic_bread     0.7963    0.8600    0.8269        50
+                gnocchi     0.6792    0.7200    0.6990        50
+grilled_cheese_sandwich     0.8182    0.5400    0.6506        50
+              hamburger     0.8750    0.8400    0.8571        50
+                hot_dog     0.8491    0.9000    0.8738        50
+              ice_cream     0.8571    0.8400    0.8485        50
+                lasagna     0.7586    0.8800    0.8148        50
+              miso_soup     0.9783    0.9000    0.9375        50
+                 nachos     0.8367    0.8200    0.8283        50
+               omelette     0.7091    0.7800    0.7429        50
+               pad_thai     0.9556    0.8600    0.9053        50
+               pancakes     0.8980    0.8800    0.8889        50
+                  pizza     0.8913    0.8200    0.8542        50
+                  ramen     0.7963    0.8600    0.8269        50
+                ravioli     0.7500    0.6000    0.6667        50
+                risotto     0.9020    0.9200    0.9109        50
+    spaghetti_bolognese     0.9200    0.9200    0.9200        50
+    spaghetti_carbonara     0.8393    0.9400    0.8868        50
+           spring_rolls     0.9362    0.8800    0.9072        50
+                  sushi     0.9149    0.8600    0.8866        50
+               tiramisu     0.8776    0.8600    0.8687        50
+                waffles     0.9149    0.8600    0.8866        50
+
+               accuracy                         0.8487      1500
+              macro avg     0.8536    0.8487    0.8484      1500
+           weighted avg     0.8536    0.8487    0.8484      1500
