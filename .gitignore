@@ -14,3 +14,8 @@ plots/
 scripts/
 
 *.ipynb_checkpoints
+.venv/
+__pycache__/
+*.pyc
+.env
+.streamlit/secrets.toml
