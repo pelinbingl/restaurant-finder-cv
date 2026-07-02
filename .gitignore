@@ -1,24 +1,16 @@
-
-# Dataset ve büyük dosyalar
-food101/
-data/
-dataset_raw/
-models/
-logs/
-
-
-# Model dosyaları
-*.pth
-*.pt
-*.h5
-
-# Python
 .venv/
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.env
 
-# Logs & Plots
+data/
+dataset_raw/
+food101/
 logs/
+models/
 plots/
+scripts/
 
-
+*.ipynb_checkpoints
