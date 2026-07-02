@@ -1,0 +1,30 @@
+========================================================================
+  Yiyecek Tanıma — Eğitim Raporu  v2  (Anti-Overfitting)
+  Proje : D:\Projeler\Python\restaurant_finder_cv
+  Cihaz : cpu
+========================================================================
+
+Değişiklikler (v1 → v2):
+  [1] Dropout          : 0.2 → 0.4
+  [2] Label Smoothing  : yok → 0.1  (eğitimde)
+  [3] Mixup            : yok → alpha=0.3  (fine-tune)
+  [4] Augmentasyon     : +Perspective +GaussianBlur +agresif crop
+  [5] Optimizer        : Adam → AdamW
+  [6] LR stratejisi    : tek LR → katman bazlı (backbone 10x yavaş)
+  [7] Scheduler        : CosineAnnealing → OneCycleLR (warmup)
+  [8] Weight Decay     : 1e-4 → 1e-3
+  [9] Gradient Clipping: yok → max_norm=1.0
+ [10] Early stop pat.  : 4 → 7
+
+Sınıflar (30): ['baklava', 'chocolate_cake', 'club_sandwich', 'donuts', 'dumplings', 'eggs_benedict', 'french_fries', 'french_toast', 'garlic_bread', 'gnocchi', 'grilled_cheese_sandwich', 'hamburger', 'hot_dog', 'ice_cream', 'lasagna', 'miso_soup', 'nachos', 'omelette', 'pad_thai', 'pancakes', 'pizza', 'ramen', 'ravioli', 'risotto', 'spaghetti_bolognese', 'spaghetti_carbonara', 'spring_rolls', 'sushi', 'tiramisu', 'waffles']
+Train : 12000 görüntü
+Val   :  1500 görüntü
+Test  :  1500 görüntü
+
+========================================================================
+  MODEL : MOBILENET_V2
+  Device: cpu  |  Sınıf sayısı: 30
+  Anti-overfitting: Dropout(0.4) + LS(0.1) + Mixup + AdamW + OC-LR
+========================================================================
+
+[mobilenet_v2] Phase 1 — HEAD (5 epoch)

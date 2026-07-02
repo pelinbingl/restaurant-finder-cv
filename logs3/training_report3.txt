@@ -1,0 +1,59 @@
+========================================================================
+  Yiyecek Tanıma — Eğitim Raporu  v2  (Anti-Overfitting)
+  Proje : D:\Projeler\Python\restaurant_finder_cv
+  Cihaz : cpu
+========================================================================
+
+Değişiklikler (v1 → v2):
+  [1] Dropout          : 0.2 → 0.4
+  [2] Label Smoothing  : yok → 0.1  (eğitimde)
+  [3] Mixup            : yok → alpha=0.3  (fine-tune)
+  [4] Augmentasyon     : +Perspective +GaussianBlur +agresif crop
+  [5] Optimizer        : Adam → AdamW
+  [6] LR stratejisi    : tek LR → katman bazlı (backbone 10x yavaş)
+  [7] Scheduler        : CosineAnnealing → OneCycleLR (warmup)
+  [8] Weight Decay     : 1e-4 → 1e-3
+  [9] Gradient Clipping: yok → max_norm=1.0
+ [10] Early stop pat.  : 4 → 7
+
+Sınıflar (30): ['baklava', 'chocolate_cake', 'club_sandwich', 'donuts', 'dumplings', 'eggs_benedict', 'french_fries', 'french_toast', 'garlic_bread', 'gnocchi', 'grilled_cheese_sandwich', 'hamburger', 'hot_dog', 'ice_cream', 'lasagna', 'miso_soup', 'nachos', 'omelette', 'pad_thai', 'pancakes', 'pizza', 'ramen', 'ravioli', 'risotto', 'spaghetti_bolognese', 'spaghetti_carbonara', 'spring_rolls', 'sushi', 'tiramisu', 'waffles']
+Train : 12000 görüntü
+Val   :  1500 görüntü
+Test  :  1500 görüntü
+
+========================================================================
+  MODEL : MOBILENET_V2
+  Device: cpu  |  Sınıf sayısı: 30
+  Anti-overfitting: Dropout(0.4) + LS(0.1) + Mixup + AdamW + OC-LR
+========================================================================
+
+[mobilenet_v2] Phase 1 — HEAD (5 epoch)
+  [mobilenet_v2][HEAD]  1/5 | train=2.7701 val=1.9281 | top1=0.539 top3=0.749 | 395.5s ◀ BEST
+  [mobilenet_v2][HEAD]  2/5 | train=2.3537 val=1.6395 | top1=0.593 top3=0.802 | 307.6s ◀ BEST
+  [mobilenet_v2][HEAD]  3/5 | train=2.2628 val=1.5202 | top1=0.619 top3=0.809 | 311.1s ◀ BEST
+  [mobilenet_v2][HEAD]  4/5 | train=2.2274 val=1.4627 | top1=0.624 top3=0.815 | 309.5s ◀ BEST
+  [mobilenet_v2][HEAD]  5/5 | train=2.2014 val=1.4203 | top1=0.631 top3=0.814 | 272.6s ◀ BEST
+
+[mobilenet_v2] Phase 2 — FINE-TUNE (30 epoch, Mixup aktif)
+  [mobilenet_v2][FT]  1/30 | train=2.5875 val=1.4624 | top1=0.633 top3=0.822 | lr=1.6e-05 | 619.0s ◀ BEST
+  [mobilenet_v2][FT]  2/30 | train=2.5071 val=1.4342 | top1=0.643 top3=0.830 | lr=3.9e-05 | 622.2s ◀ BEST
+  [mobilenet_v2][FT]  3/30 | train=2.4873 val=1.4113 | top1=0.645 top3=0.835 | lr=5.0e-05 | 635.3s ◀ BEST
+  [mobilenet_v2][FT]  4/30 | train=2.4709 val=1.3849 | top1=0.657 top3=0.838 | lr=5.0e-05 | 637.3s ◀ BEST
+  [mobilenet_v2][FT]  5/30 | train=2.4580 val=1.3789 | top1=0.665 top3=0.845 | lr=4.9e-05 | 625.0s ◀ BEST
+  [mobilenet_v2][FT]  6/30 | train=2.3933 val=1.3273 | top1=0.680 top3=0.848 | lr=4.8e-05 | 625.5s ◀ BEST
+  [mobilenet_v2][FT]  7/30 | train=2.4180 val=1.3813 | top1=0.665 top3=0.841 | lr=4.7e-05 | 637.6s
+  [mobilenet_v2][FT]  8/30 | train=2.3694 val=1.3467 | top1=0.677 top3=0.851 | lr=4.6e-05 | 640.7s
+  [mobilenet_v2][FT]  9/30 | train=2.3887 val=1.3203 | top1=0.680 top3=0.852 | lr=4.4e-05 | 627.8s
+  [mobilenet_v2][FT] 10/30 | train=2.3041 val=1.3304 | top1=0.675 top3=0.859 | lr=4.2e-05 | 649.8s
+  [mobilenet_v2][FT] 11/30 | train=2.3069 val=1.2986 | top1=0.683 top3=0.856 | lr=4.0e-05 | 446.0s ◀ BEST
+  [mobilenet_v2][FT] 12/30 | train=2.3348 val=1.2897 | top1=0.683 top3=0.857 | lr=3.8e-05 | 557.4s
+  [mobilenet_v2][FT] 13/30 | train=2.2934 val=1.3019 | top1=0.685 top3=0.859 | lr=3.5e-05 | 644.9s ◀ BEST
+  [mobilenet_v2][FT] 14/30 | train=2.2914 val=1.2897 | top1=0.688 top3=0.864 | lr=3.2e-05 | 637.0s ◀ BEST
+  [mobilenet_v2][FT] 15/30 | train=2.2562 val=1.2970 | top1=0.689 top3=0.857 | lr=2.9e-05 | 637.6s ◀ BEST
+  [mobilenet_v2][FT] 16/30 | train=2.2720 val=1.2794 | top1=0.687 top3=0.862 | lr=2.6e-05 | 629.4s
+  [mobilenet_v2][FT] 17/30 | train=2.2313 val=1.2685 | top1=0.695 top3=0.866 | lr=2.4e-05 | 615.7s ◀ BEST
+  [mobilenet_v2][FT] 18/30 | train=2.2461 val=1.2485 | top1=0.701 top3=0.862 | lr=2.1e-05 | 390.6s ◀ BEST
+  [mobilenet_v2][FT] 19/30 | train=2.2952 val=1.2139 | top1=0.703 top3=0.865 | lr=1.8e-05 | 389.0s ◀ BEST
+  [mobilenet_v2][FT] 20/30 | train=2.2352 val=1.2436 | top1=0.691 top3=0.865 | lr=1.5e-05 | 391.5s
+  [mobilenet_v2][FT] 21/30 | train=2.2869 val=1.1962 | top1=0.707 top3=0.869 | lr=1.3e-05 | 392.6s ◀ BEST
+  [mobilenet_v2][FT] 22/30 | train=2.2752 val=1.2515 | top1=0.697 top3=0.864 | lr=1.0e-05 | 391.8s
